@@ -10,13 +10,13 @@ export class BoardsService {
     return this.boards;
   }
 
-  createBoard(title: string, description: string) {
+  createBoard(title: string, description: string): Board {
     const board: Board = {
       id: uuid(),
       title,
       description,
       status: BoardStatus.PUBLIC,
-    }
+    };
 
     this.boards.push(board);
 
