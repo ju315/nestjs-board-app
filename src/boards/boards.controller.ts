@@ -6,6 +6,8 @@ import {
   Param,
   Patch,
   Post,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
 import { BoardStatus } from './board-status.enum';
@@ -22,10 +24,11 @@ export class BoardsController {
   //   return this.boardService.getAllBoards();
   // }
 
-  // @Post('/')
-  // createBoard(@Body() createBoardDto: CreateBoardDto): Board {
-  //   return this.boardService.createBoard(createBoardDto);
-  // }
+  @Post()
+  @UsePipes(ValidationPipe)
+  createBoard(@Body() createBoardDto: CreateBoardDto): Promise<Board> {
+    return this.boardService.createBoard(createBoardDto);
+  }
 
   @Get('/:id')
   getBoardById(@Param('id') id: number): Promise<Board> {
