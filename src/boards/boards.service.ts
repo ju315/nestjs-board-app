@@ -33,10 +33,14 @@ export class BoardsService {
     return found;
   }
 
-  // deleteBoard(id: string): void {
-  //   const found = this.getBoardById(id);
-  //   this.boards = this.boards.filter((board) => board.id !== id);
-  // }
+  async deleteBoard(id: number): Promise<void> {
+    const res = await this.boardRepository.delete(id);
+
+    if (res.affected === 0) {
+      // 삭제할 데이터가 없는 경우
+      throw new NotFoundException(`Can't not find Board in ${id}`);
+    }
+  }
   // updateBoardStatus(id: string, status: BoardStatus): Board {
   //   const board = this.getBoardById(id);
   //   board.status = status;
