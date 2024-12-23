@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
-import { Board, BoardStatus } from './board.model';
+import { BoardStatus } from './board-status.enum';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
 
@@ -16,31 +16,31 @@ import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe'
 export class BoardsController {
   constructor(private boardService: BoardsService) {}
 
-  @Get('/')
-  getAllBoard(): Board[] {
-    return this.boardService.getAllBoards();
-  }
+  // @Get('/')
+  // getAllBoard(): Board[] {
+  //   return this.boardService.getAllBoards();
+  // }
 
-  @Post('/')
-  createBoard(@Body() createBoardDto: CreateBoardDto): Board {
-    return this.boardService.createBoard(createBoardDto);
-  }
+  // @Post('/')
+  // createBoard(@Body() createBoardDto: CreateBoardDto): Board {
+  //   return this.boardService.createBoard(createBoardDto);
+  // }
 
-  @Get('/:id')
-  getBoardById(@Param('id') id: string): Board {
-    return this.boardService.getBoardById(id);
-  }
+  // @Get('/:id')
+  // getBoardById(@Param('id') id: string): Board {
+  //   return this.boardService.getBoardById(id);
+  // }
 
-  @Delete('/:id')
-  deleteBoardById(@Param('id') id: string): void {
-    this.boardService.deleteBoard(id);
-  }
+  // @Delete('/:id')
+  // deleteBoardById(@Param('id') id: string): void {
+  //   this.boardService.deleteBoard(id);
+  // }
 
-  @Patch('/:id/status')
-  updateBoardStatus(
-    @Param('id') id: string,
-    @Body('status', BoardStatusValidationPipe) status: BoardStatus,
-  ): Board {
-    return this.boardService.updateBoardStatus(id, status);
-  }
+  // @Patch('/:id/status')
+  // updateBoardStatus(
+  //   @Param('id') id: string,
+  //   @Body('status', BoardStatusValidationPipe) status: BoardStatus,
+  // ): Board {
+  //   return this.boardService.updateBoardStatus(id, status);
+  // }
 }
